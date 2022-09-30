@@ -31,7 +31,11 @@ func example() {
 
 	// exampleGetForum()
 	// exampleGetForumTopics()
-	exampleGetForumTopicDetails()
+	// exampleGetForumTopicDetails()
+
+	// exampleGetCharacterDetails()
+
+	exampleGetPeopleDetails()
 }
 
 func exampleGetAnimeDetails() {
@@ -541,4 +545,44 @@ func exampleGetForumTopicDetails() {
 	}
 
 	toJson("forum-topic-"+strconv.Itoa(id), d)
+}
+
+func exampleGetCharacterDetails() {
+	id := 170329
+
+	d, err := malClient.GetCharacterDetails(id,
+		"first_name",
+		"last_name",
+		"alternative_name",
+		"main_picture",
+		"biography",
+		"num_favorites",
+		"animeography",
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("character-"+strconv.Itoa(id), d)
+}
+
+func exampleGetPeopleDetails() {
+	id := 869
+
+	d, err := malClient.GetPeopleDetails(id,
+		"first_name",
+		"last_name",
+		"alternative_names",
+		"main_picture",
+		"birthday",
+		"website_url",
+		"num_favorites",
+		"more",
+	)
+
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("people-"+strconv.Itoa(id), d)
 }

@@ -77,6 +77,35 @@ type Manga struct {
 	NumFavorites      int                   `json:"num_favorites"` // Undocumented.
 }
 
+// Character is character model.
+//
+// Undocumented.
+type Character struct {
+	ID              int            `json:"id"`
+	FirstName       string         `json:"first_name"`
+	LastName        string         `json:"last_name"`
+	AlternativeName string         `json:"alternative_name"`
+	MainPicture     Picture        `json:"main_picture"` // Only contain `medium`.
+	Biography       string         `json:"biography"`
+	NumFavorites    int            `json:"num_favorites"`
+	Animeography    []Animeography `json:"animeography"`
+}
+
+// People is people model.
+//
+// Undocumented.
+type People struct {
+	ID               int      `json:"id"`
+	FirstName        string   `json:"first_name"`
+	LastName         string   `json:"last_name"`
+	AlternativeNames []string `json:"alternative_names"`
+	MainPicture      Picture  `json:"main_picture"` // Only contain `medium`.
+	Birthday         string   `json:"birthday"`
+	WebsiteURL       string   `json:"website_url"`
+	More             string   `json:"more"`
+	NumFavorites     int      `json:"num_favorites"`
+}
+
 // Picture is picture model.
 type Picture struct {
 	Large  string `json:"large"`
@@ -469,4 +498,12 @@ type ForumPollOption struct {
 	ID    int    `json:"id"`
 	Text  string `json:"text"`
 	Votes int    `json:"votes"`
+}
+
+// Animeography is animeography model.
+//
+// Undocumented.
+type Animeography struct {
+	Node Anime  `json:"node"`
+	Role string `json:"role"`
 }
