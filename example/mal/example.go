@@ -17,7 +17,7 @@ func example() {
 
 	// exampleUpdateMyAnimeListStatus()
 	// exampleDeleteMyAnimeListStatus()
-	// exampleGetUserAnimeList()
+	exampleGetUserAnimeList()
 
 	// exampleGetMangaDetails()
 	// exampleGetMangaList()
@@ -35,7 +35,7 @@ func example() {
 
 	// exampleGetCharacterDetails()
 
-	exampleGetPeopleDetails()
+	// exampleGetPeopleDetails()
 }
 
 func exampleGetAnimeDetails() {
@@ -389,6 +389,7 @@ func exampleGetUserAnimeList() {
 			Limit:    5,
 			Offset:   0,
 		},
+		"list_status{tags}",
 		"alternative_titles",
 		"start_date",
 		"end_date",
@@ -463,6 +464,7 @@ func exampleGetUserMangaList() {
 			Limit:    5,
 			Offset:   0,
 		},
+		"list_status{tags}",
 		"alternative_titles",
 		"start_date",
 		"end_date",

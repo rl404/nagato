@@ -70,8 +70,8 @@ type Manga struct {
 	Authors           []Author              `json:"authors"`
 	Pictures          []Picture             `json:"pictures"`
 	Background        string                `json:"background"`
-	RelatedAnime      []RelatedAnime        `json:"related_anime"`
-	RelatedManga      []RelatedManga        `json:"related_manga"` // Always empty.
+	RelatedAnime      []RelatedAnime        `json:"related_anime"` // Always empty.
+	RelatedManga      []RelatedManga        `json:"related_manga"`
 	Recommendations   []MangaRecommendation `json:"recommendations"`
 	Serialization     []Serialization       `json:"serialization"`
 	NumFavorites      int                   `json:"num_favorites"` // Undocumented.
@@ -221,14 +221,18 @@ type StatisticStatus struct {
 	PlanToWatch interface{} `json:"plan_to_watch"`
 }
 
-// ThemeSong is theme song model (undocumented).
+// ThemeSong is theme song model.
+//
+// Undocumented.
 type ThemeSong struct {
 	ID      int    `json:"id"`
 	AnimeID int    `json:"anime_id"`
 	Text    string `json:"text"`
 }
 
-// Video is video model (undocumented).
+// Video is video model.
+//
+// Undocumented.
 type Video struct {
 	ID        int    `json:"id"`
 	Title     string `json:"title"`
@@ -358,7 +362,7 @@ type UserAnimePaging struct {
 // UserAnimePagingData is user anime paging data model.
 type UserAnimePagingData struct {
 	Node       Anime             `json:"node"`
-	ListStatus MyAnimeListStatus `json:"list_status"` // Always empty.
+	ListStatus MyAnimeListStatus `json:"list_status"`
 }
 
 // UserMangaPaging is user manga paging model.
@@ -370,7 +374,7 @@ type UserMangaPaging struct {
 // UserMangaPagingData is user manga paging data model.
 type UserMangaPagingData struct {
 	Node       Manga             `json:"node"`
-	ListStatus MyMangaListStatus `json:"list_status"` // Always empty.
+	ListStatus MyMangaListStatus `json:"list_status"`
 }
 
 // User is user model.
