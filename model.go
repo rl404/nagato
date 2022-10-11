@@ -94,7 +94,7 @@ type Date struct {
 
 // Genre is genre model.
 type Genre struct {
-	ID   int64
+	ID   int
 	Name string
 }
 
