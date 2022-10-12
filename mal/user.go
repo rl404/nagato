@@ -1,13 +1,16 @@
 package mal
 
-import "context"
+import (
+	"context"
+	"net/http"
+)
 
 // GetUserInfo to get user info.
 //
 // Only `@me` in username param works for now.
 //
 // Need oauth2.
-func (c *Client) GetUserInfo(username string, fields ...string) (*User, error) {
+func (c *Client) GetUserInfo(username string, fields ...string) (*User, int, error) {
 	return c.GetUserInfoWithContext(context.Background(), username, fields...)
 }
 
@@ -16,15 +19,15 @@ func (c *Client) GetUserInfo(username string, fields ...string) (*User, error) {
 // Only `@me` in username param works for now.
 //
 // Need oauth2.
-func (c *Client) GetUserInfoWithContext(ctx context.Context, username string, fields ...string) (*User, error) {
+func (c *Client) GetUserInfoWithContext(ctx context.Context, username string, fields ...string) (*User, int, error) {
 	url := c.generateURL(map[string]interface{}{
 		"fields": fields,
 	}, "users", username)
 
 	var user User
-	if err := c.get(ctx, url, &user); err != nil {
-		return nil, err
+	if code, err := c.get(ctx, url, &user); err != nil {
+		return nil, code, err
 	}
 
-	return &user, nil
+	return &user, http.StatusOK, nil
 }

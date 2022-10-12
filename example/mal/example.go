@@ -41,7 +41,7 @@ func example() {
 func exampleGetAnimeDetails() {
 	id := 44511
 
-	d, err := malClient.GetAnimeDetails(id,
+	d, _, err := malClient.GetAnimeDetails(id,
 		"alternative_titles",
 		"start_date",
 		"end_date",
@@ -84,7 +84,7 @@ func exampleGetAnimeDetails() {
 }
 
 func exampleGetAnimeList() {
-	d, err := malClient.GetAnimeList(
+	d, _, err := malClient.GetAnimeList(
 		mal.GetAnimeListParam{
 			Query:  "black rock",
 			Limit:  5,
@@ -123,7 +123,7 @@ func exampleGetAnimeList() {
 }
 
 func exampleGetAnimeRanking() {
-	d, err := malClient.GetAnimeRanking(
+	d, _, err := malClient.GetAnimeRanking(
 		mal.GetAnimeRankingParam{
 			RankingType: "airing",
 			Limit:       5,
@@ -162,7 +162,7 @@ func exampleGetAnimeRanking() {
 }
 
 func exampleGetSeasonalAnime() {
-	d, err := malClient.GetSeasonalAnime(
+	d, _, err := malClient.GetSeasonalAnime(
 		mal.GetSeasonalAnimeParam{
 			Year:   2021,
 			Season: "fall",
@@ -203,7 +203,7 @@ func exampleGetSeasonalAnime() {
 }
 
 func exampleGetSuggestedAnime() {
-	d, err := malClient.GetSuggestedAnime(
+	d, _, err := malClient.GetSuggestedAnime(
 		mal.GetSuggestedAnimeParam{
 			Limit:  5,
 			Offset: 0,
@@ -243,7 +243,7 @@ func exampleGetSuggestedAnime() {
 func exampleGetMangaDetails() {
 	id := 119161
 
-	d, err := malClient.GetMangaDetails(id,
+	d, _, err := malClient.GetMangaDetails(id,
 		"alternative_titles",
 		"start_date",
 		"end_date",
@@ -279,7 +279,7 @@ func exampleGetMangaDetails() {
 }
 
 func exampleGetMangaList() {
-	d, err := malClient.GetMangaList(mal.GetMangaListParam{
+	d, _, err := malClient.GetMangaList(mal.GetMangaListParam{
 		Query:  "naruto",
 		Nsfw:   true,
 		Limit:  5,
@@ -314,7 +314,7 @@ func exampleGetMangaList() {
 }
 
 func exampleGetMangaRanking() {
-	d, err := malClient.GetMangaRanking(mal.GetMangaRankingParam{
+	d, _, err := malClient.GetMangaRanking(mal.GetMangaRankingParam{
 		RankingType: "manga",
 		Nsfw:        true,
 		Limit:       5,
@@ -349,7 +349,7 @@ func exampleGetMangaRanking() {
 }
 
 func exampleUpdateMyAnimeListStatus() {
-	d, err := malClient.UpdateMyAnimeListStatus(mal.UpdateMyAnimeListStatusParam{
+	d, _, err := malClient.UpdateMyAnimeListStatus(mal.UpdateMyAnimeListStatusParam{
 		ID:                 44511,
 		Status:             "plan_to_watch",
 		NumWatchedEpisodes: 1,
@@ -371,7 +371,7 @@ func exampleUpdateMyAnimeListStatus() {
 }
 
 func exampleDeleteMyAnimeListStatus() {
-	err := malClient.DeleteMyAnimeListStatus(44511)
+	_, err := malClient.DeleteMyAnimeListStatus(44511)
 	if err != nil {
 		panic(err)
 	}
@@ -380,7 +380,7 @@ func exampleDeleteMyAnimeListStatus() {
 func exampleGetUserAnimeList() {
 	username := "rl404"
 
-	d, err := malClient.GetUserAnimeList(
+	d, _, err := malClient.GetUserAnimeList(
 		mal.GetUserAnimeListParam{
 			Username: username,
 			Status:   "watching",
@@ -423,7 +423,7 @@ func exampleGetUserAnimeList() {
 }
 
 func exampleUpdateMyMangaListStatus() {
-	d, err := malClient.UpdateMyMangaListStatus(mal.UpdateMyMangaListStatusParam{
+	d, _, err := malClient.UpdateMyMangaListStatus(mal.UpdateMyMangaListStatusParam{
 		ID:              83903,
 		Status:          "plan_to_read",
 		NumVolumesRead:  1,
@@ -446,7 +446,7 @@ func exampleUpdateMyMangaListStatus() {
 }
 
 func exampleDeleteMyMangaListStatus() {
-	err := malClient.DeleteMyMangaListStatus(83903)
+	_, err := malClient.DeleteMyMangaListStatus(83903)
 	if err != nil {
 		panic(err)
 	}
@@ -455,7 +455,7 @@ func exampleDeleteMyMangaListStatus() {
 func exampleGetUserMangaList() {
 	username := "rl404"
 
-	d, err := malClient.GetUserMangaList(
+	d, _, err := malClient.GetUserMangaList(
 		mal.GetUserMangaListParam{
 			Username: username,
 			Status:   "",
@@ -496,7 +496,7 @@ func exampleGetUserMangaList() {
 func exampleGetUserInfo() {
 	username := "@me"
 
-	d, err := malClient.GetUserInfo(username,
+	d, _, err := malClient.GetUserInfo(username,
 		"time_zone",
 		"anime_statistics",
 	)
@@ -508,7 +508,7 @@ func exampleGetUserInfo() {
 }
 
 func exampleGetForum() {
-	d, err := malClient.GetForumBoards()
+	d, _, err := malClient.GetForumBoards()
 	if err != nil {
 		panic(err)
 	}
@@ -517,7 +517,7 @@ func exampleGetForum() {
 }
 
 func exampleGetForumTopics() {
-	d, err := malClient.GetForumTopics(mal.GetForumTopicsParam{
+	d, _, err := malClient.GetForumTopics(mal.GetForumTopicsParam{
 		BoardID:       0,
 		SubboardID:    2,
 		Query:         "anime",
@@ -537,7 +537,7 @@ func exampleGetForumTopics() {
 func exampleGetForumTopicDetails() {
 	id := 2048122
 
-	d, err := malClient.GetForumTopicDetails(mal.GetForumTopicDetailsParam{
+	d, _, err := malClient.GetForumTopicDetails(mal.GetForumTopicDetailsParam{
 		ID:     id,
 		Limit:  5,
 		Offset: 0,
@@ -552,7 +552,7 @@ func exampleGetForumTopicDetails() {
 func exampleGetCharacterDetails() {
 	id := 170329
 
-	d, err := malClient.GetCharacterDetails(id,
+	d, _, err := malClient.GetCharacterDetails(id,
 		"first_name",
 		"last_name",
 		"alternative_name",
@@ -571,7 +571,7 @@ func exampleGetCharacterDetails() {
 func exampleGetPeopleDetails() {
 	id := 869
 
-	d, err := malClient.GetPeopleDetails(id,
+	d, _, err := malClient.GetPeopleDetails(id,
 		"first_name",
 		"last_name",
 		"alternative_names",

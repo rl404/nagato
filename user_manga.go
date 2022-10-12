@@ -2,22 +2,23 @@ package nagato
 
 import (
 	"context"
+	"net/http"
 
 	"github.com/rl404/nagato/mal"
 )
 
 // GetUserMangaList to get user manga list.
-func (c *Client) GetUserMangaList(param GetUserMangaListParam, fields ...MangaField) ([]UserManga, error) {
+func (c *Client) GetUserMangaList(param GetUserMangaListParam, fields ...MangaField) ([]UserManga, int, error) {
 	return c.GetUserMangaListWithContext(context.Background(), param, fields...)
 }
 
 // GetUserMangaListWithContext to get user manga list with context.
-func (c *Client) GetUserMangaListWithContext(ctx context.Context, param GetUserMangaListParam, fields ...MangaField) ([]UserManga, error) {
+func (c *Client) GetUserMangaListWithContext(ctx context.Context, param GetUserMangaListParam, fields ...MangaField) ([]UserManga, int, error) {
 	if err := c.validate(&param); err != nil {
-		return nil, err
+		return nil, http.StatusBadRequest, err
 	}
 
-	manga, err := c.mal.GetUserMangaListWithContext(ctx, mal.GetUserMangaListParam{
+	manga, code, err := c.mal.GetUserMangaListWithContext(ctx, mal.GetUserMangaListParam{
 		Username: param.Username,
 		Status:   string(param.Status),
 		Nsfw:     param.NSFW,
@@ -26,8 +27,8 @@ func (c *Client) GetUserMangaListWithContext(ctx context.Context, param GetUserM
 		Offset:   param.Offset,
 	}, c.mangaFieldsToStrs(fields...)...)
 	if err != nil {
-		return nil, err
+		return nil, code, err
 	}
 
-	return c.userMangaPagingToUserMangaList(manga), nil
+	return c.userMangaPagingToUserMangaList(manga), http.StatusOK, nil
 }

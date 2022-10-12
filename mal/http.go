@@ -28,53 +28,53 @@ func (c *Client) handleError(body []byte) error {
 	return errors.New(msg)
 }
 
-func (c *Client) get(ctx context.Context, url string, model interface{}) error {
+func (c *Client) get(ctx context.Context, url string, model interface{}) (int, error) {
 	body, code, err := c.MakeRequest(ctx, http.MethodGet, url, nil, nil)
 	if err != nil {
-		return err
+		return code, err
 	}
 
 	if code != http.StatusOK {
-		return c.handleError(body)
+		return code, c.handleError(body)
 	}
 
 	if err := json.Unmarshal(body, &model); err != nil {
-		return err
+		return http.StatusInternalServerError, err
 	}
 
-	return nil
+	return code, nil
 }
 
-func (c *Client) patch(ctx context.Context, url string, payload []byte, model interface{}) error {
+func (c *Client) patch(ctx context.Context, url string, payload []byte, model interface{}) (int, error) {
 	body, code, err := c.MakeRequest(ctx, http.MethodPatch, url, map[string]string{
 		"Content-Type": "application/x-www-form-urlencoded",
 	}, payload)
 	if err != nil {
-		return err
+		return code, err
 	}
 
 	if code != http.StatusOK {
-		return c.handleError(body)
+		return code, c.handleError(body)
 	}
 
 	if err := json.Unmarshal(body, &model); err != nil {
-		return err
+		return http.StatusInternalServerError, err
 	}
 
-	return nil
+	return code, nil
 }
 
-func (c *Client) delete(ctx context.Context, url string) error {
+func (c *Client) delete(ctx context.Context, url string) (int, error) {
 	body, code, err := c.MakeRequest(ctx, http.MethodDelete, url, nil, nil)
 	if err != nil {
-		return err
+		return code, err
 	}
 
 	if code != http.StatusOK {
-		return c.handleError(body)
+		return code, c.handleError(body)
 	}
 
-	return nil
+	return code, nil
 }
 
 // MakeRequest to make http request.

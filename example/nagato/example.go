@@ -24,7 +24,7 @@ func example() {
 func exampleGetAnimeDetails() {
 	id := 1
 
-	d, err := nagatoClient.GetAnimeDetails(id,
+	d, _, err := nagatoClient.GetAnimeDetails(id,
 		nagato.AnimeFieldAlternativeTitles,
 		nagato.AnimeFieldStartDate,
 		nagato.AnimeFieldEndDate,
@@ -64,7 +64,7 @@ func exampleGetAnimeDetails() {
 }
 
 func exampleGetAnimeList() {
-	d, err := nagatoClient.GetAnimeList(nagato.GetAnimeListParam{
+	d, _, err := nagatoClient.GetAnimeList(nagato.GetAnimeListParam{
 		Query:  "gurren",
 		NSFW:   true,
 		Limit:  5,
@@ -101,7 +101,7 @@ func exampleGetAnimeList() {
 }
 
 func exampleGetAnimeRanking() {
-	d, err := nagatoClient.GetAnimeRanking(nagato.GetAnimeRankingParam{
+	d, _, err := nagatoClient.GetAnimeRanking(nagato.GetAnimeRankingParam{
 		RankingType: nagato.RankingAll,
 		NSFW:        true,
 		Limit:       5,
@@ -138,7 +138,7 @@ func exampleGetAnimeRanking() {
 }
 
 func exampleGetSeasonalAnime() {
-	d, err := nagatoClient.GetSeasonalAnime(nagato.GetSeasonalAnimeParam{
+	d, _, err := nagatoClient.GetSeasonalAnime(nagato.GetSeasonalAnimeParam{
 		Year:   2020,
 		Season: nagato.SeasonFall,
 		NSFW:   true,
@@ -177,7 +177,7 @@ func exampleGetSeasonalAnime() {
 }
 
 func exampleGetSuggestedAnime() {
-	d, err := nagatoClient.GetSuggestedAnime(nagato.GetSuggestedAnimeParam{
+	d, _, err := nagatoClient.GetSuggestedAnime(nagato.GetSuggestedAnimeParam{
 		NSFW:   true,
 		Limit:  5,
 		Offset: 0,
@@ -215,7 +215,7 @@ func exampleGetSuggestedAnime() {
 func exampleGetMangaDetails() {
 	id := 1
 
-	d, err := nagatoClient.GetMangaDetails(id,
+	d, _, err := nagatoClient.GetMangaDetails(id,
 		nagato.MangaFieldAlternativeTitles,
 		nagato.MangaFieldStartDate,
 		nagato.MangaFieldEndDate,
@@ -248,7 +248,7 @@ func exampleGetMangaDetails() {
 }
 
 func exampleGetMangaList() {
-	d, err := nagatoClient.GetMangaList(nagato.GetMangaListParam{
+	d, _, err := nagatoClient.GetMangaList(nagato.GetMangaListParam{
 		Query:  "naruto",
 		NSFW:   true,
 		Limit:  5,
@@ -281,7 +281,7 @@ func exampleGetMangaList() {
 }
 
 func exampleGetMangaRanking() {
-	d, err := nagatoClient.GetMangaRanking(nagato.GetMangaRankingParam{
+	d, _, err := nagatoClient.GetMangaRanking(nagato.GetMangaRankingParam{
 		RankingType: nagato.RankingAll,
 		NSFW:        true,
 		Limit:       5,
@@ -314,7 +314,7 @@ func exampleGetMangaRanking() {
 }
 
 func exampleGetUserAnimeList() {
-	d, err := nagatoClient.GetUserAnimeList(nagato.GetUserAnimeListParam{
+	d, _, err := nagatoClient.GetUserAnimeList(nagato.GetUserAnimeListParam{
 		Username: "rl404",
 		Status:   nagato.UserAnimeStatusCompleted,
 		NSFW:     true,
@@ -354,7 +354,7 @@ func exampleGetUserAnimeList() {
 }
 
 func exampleGetUserMangaList() {
-	d, err := nagatoClient.GetUserMangaList(nagato.GetUserMangaListParam{
+	d, _, err := nagatoClient.GetUserMangaList(nagato.GetUserMangaListParam{
 		Username: "rl404",
 		Status:   nagato.UserMangaStatusCompleted,
 		NSFW:     true,

@@ -30,11 +30,11 @@ func (c *Client) dateToDate(date string) Date {
 }
 
 func (c *Client) initValidator() {
-	c.validator.RegisterValidatorError("required", c.valErrRequired)
-	c.validator.RegisterValidatorError("gt", c.valErrGT)
-	c.validator.RegisterValidatorError("gte", c.valErrGTE)
-	c.validator.RegisterValidatorError("lte", c.valErrLTE)
-	c.validator.RegisterValidatorError("oneof", c.valErrOneOf)
+	_ = c.validator.RegisterValidatorError("required", c.valErrRequired)
+	_ = c.validator.RegisterValidatorError("gt", c.valErrGT)
+	_ = c.validator.RegisterValidatorError("gte", c.valErrGTE)
+	_ = c.validator.RegisterValidatorError("lte", c.valErrLTE)
+	_ = c.validator.RegisterValidatorError("oneof", c.valErrOneOf)
 }
 
 func (c *Client) validate(data interface{}) error {
