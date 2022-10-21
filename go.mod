@@ -3,15 +3,14 @@ module github.com/rl404/nagato
 go 1.18
 
 require (
-	github.com/rl404/fairy v0.20.1
+	github.com/go-playground/mold/v4 v4.2.0
+	github.com/go-playground/validator/v10 v10.11.1
 	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1
 )
 
 require (
 	github.com/go-playground/locales v0.14.0 // indirect
-	github.com/go-playground/mold/v4 v4.2.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
-	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/segmentio/go-camelcase v0.0.0-20160726192923-7085f1e3c734 // indirect

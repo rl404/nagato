@@ -3,8 +3,8 @@ package nagato
 import (
 	"net/http"
 
-	"github.com/rl404/fairy/validation/playground"
 	"github.com/rl404/nagato/internal/limiter"
+	"github.com/rl404/nagato/internal/playground"
 	"github.com/rl404/nagato/mal"
 )
 
