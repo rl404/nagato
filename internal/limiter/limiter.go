@@ -7,7 +7,7 @@ import (
 
 // Limiter is interface for rate limiter.
 type Limiter interface {
-	Take() time.Time
+	Take()
 }
 
 type mutexLimiter struct {
@@ -36,7 +36,7 @@ func New(rate int, interval time.Duration) Limiter {
 
 // Take blocks to ensure that the time spent between multiple
 // Take calls is on average time.Second/rate.
-func (t *mutexLimiter) Take() time.Time {
+func (t *mutexLimiter) Take() {
 	t.Lock()
 	defer t.Unlock()
 
@@ -45,7 +45,7 @@ func (t *mutexLimiter) Take() time.Time {
 	// If this is our first request, then we allow it.
 	if t.last.IsZero() {
 		t.last = now
-		return t.last
+		return
 	}
 
 	// sleepFor calculates how much time we should sleep based on
@@ -69,6 +69,4 @@ func (t *mutexLimiter) Take() time.Time {
 	} else {
 		t.last = now
 	}
-
-	return t.last
 }
