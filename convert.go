@@ -541,6 +541,23 @@ func (c *Client) mangaRankingPagingToMangaList(manga *mal.MangaRankingPaging) []
 	return res
 }
 
+func (c *Client) listStatusToUserAnimeListStatus(a mal.MyAnimeListStatus) *UserAnimeListStatus {
+	return &UserAnimeListStatus{
+		Status:             c.listStatusToUserAnimeStatus(a.Status),
+		Score:              a.Score,
+		NumEpisodesWatched: a.NumEpisodesWatched,
+		IsRewatching:       a.IsRewatching,
+		StartDate:          c.dateToDate(a.StartDate),
+		FinishDate:         c.dateToDate(a.FinishDate),
+		Priority:           c.priorityToPriority(a.Priority),
+		NumTimesRewatched:  a.NumTimesRewatched,
+		RewatchValue:       c.rewatchToRewatch(a.RewatchValue),
+		Tags:               a.Tags,
+		Comments:           a.Comments,
+		UpdatedAt:          a.UpdatedAt,
+	}
+}
+
 func (c *Client) userAnimePagingToUserAnimeList(anime *mal.UserAnimePaging) []UserAnime {
 	if anime == nil {
 		return nil
@@ -549,25 +566,30 @@ func (c *Client) userAnimePagingToUserAnimeList(anime *mal.UserAnimePaging) []Us
 	res := make([]UserAnime, len(anime.Data))
 	for i, a := range anime.Data {
 		res[i] = UserAnime{
-			Anime: *c.animeToAnime(&a.Node),
-			Status: UserAnimeListStatus{
-				Status:             c.listStatusToUserAnimeStatus(a.ListStatus.Status),
-				Score:              a.ListStatus.Score,
-				NumEpisodesWatched: a.ListStatus.NumEpisodesWatched,
-				IsRewatching:       a.ListStatus.IsRewatching,
-				StartDate:          c.dateToDate(a.ListStatus.StartDate),
-				FinishDate:         c.dateToDate(a.ListStatus.FinishDate),
-				Priority:           c.priorityToPriority(a.ListStatus.Priority),
-				NumTimesRewatched:  a.ListStatus.NumTimesRewatched,
-				RewatchValue:       c.rewatchToRewatch(a.ListStatus.RewatchValue),
-				Tags:               a.ListStatus.Tags,
-				Comments:           a.ListStatus.Comments,
-				UpdatedAt:          a.ListStatus.UpdatedAt,
-			},
+			Anime:  *c.animeToAnime(&a.Node),
+			Status: *c.listStatusToUserAnimeListStatus(a.ListStatus),
 		}
 	}
 
 	return res
+}
+
+func (c *Client) listStatusToUserMangaListStatus(m mal.MyMangaListStatus) *UserMangaListStatus {
+	return &UserMangaListStatus{
+		Status:          c.listStatusToUserMangaStatus(m.Status),
+		Score:           m.Score,
+		NumVolumesRead:  m.NumVolumesRead,
+		NumChaptersRead: m.NumChaptersRead,
+		IsRereading:     m.IsRereading,
+		StartDate:       c.dateToDate(m.StartDate),
+		FinishDate:      c.dateToDate(m.FinishDate),
+		Priority:        c.priorityToPriority(m.Priority),
+		NumTimesReread:  m.NumTimesReread,
+		RereadValue:     c.rereadToReread(m.RereadValue),
+		Tags:            m.Tags,
+		Comments:        m.Comments,
+		UpdatedAt:       m.UpdatedAt,
+	}
 }
 
 func (c *Client) userMangaPagingToUserMangaList(manga *mal.UserMangaPaging) []UserManga {
@@ -578,22 +600,8 @@ func (c *Client) userMangaPagingToUserMangaList(manga *mal.UserMangaPaging) []Us
 	res := make([]UserManga, len(manga.Data))
 	for i, m := range manga.Data {
 		res[i] = UserManga{
-			Manga: *c.mangaToManga(&m.Node),
-			Status: UserMangaListStatus{
-				Status:          c.listStatusToUserMangaStatus(m.ListStatus.Status),
-				Score:           m.ListStatus.Score,
-				NumVolumesRead:  m.ListStatus.NumVolumesRead,
-				NumChaptersRead: m.ListStatus.NumChaptersRead,
-				IsRereading:     m.ListStatus.IsRereading,
-				StartDate:       c.dateToDate(m.ListStatus.StartDate),
-				FinishDate:      c.dateToDate(m.ListStatus.FinishDate),
-				Priority:        c.priorityToPriority(m.ListStatus.Priority),
-				NumTimesReread:  m.ListStatus.NumTimesReread,
-				RereadValue:     c.rereadToReread(m.ListStatus.RereadValue),
-				Tags:            m.ListStatus.Tags,
-				Comments:        m.ListStatus.Comments,
-				UpdatedAt:       m.ListStatus.UpdatedAt,
-			},
+			Manga:  *c.mangaToManga(&m.Node),
+			Status: *c.listStatusToUserMangaListStatus(m.ListStatus),
 		}
 	}
 

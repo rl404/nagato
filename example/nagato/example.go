@@ -18,7 +18,12 @@ func example() {
 	// exampleGetMangaRanking()
 
 	// exampleGetUserAnimeList()
-	exampleGetUserMangaList()
+	// exampleUpdateMyAnimeListStatus()
+	// exampleDeleteMyAnimeListStatus()
+
+	// exampleGetUserMangaList()
+	// exampleUpdateMyMangaListStatus()
+	exampleDeleteMyMangaListStatus()
 }
 
 func exampleGetAnimeDetails() {
@@ -353,6 +358,43 @@ func exampleGetUserAnimeList() {
 	toJson("user-anime", d)
 }
 
+func exampleUpdateMyAnimeListStatus() {
+	d, _, err := nagatoClient.UpdateMyAnimeListStatus(nagato.UpdateMyAnimeListStatusParam{
+		ID:             1,
+		Status:         nagato.UserAnimeStatusPlanToWatch,
+		IsRewatching:   true,
+		Episode:        1,
+		Score:          8,
+		Priority:       1,
+		RewatchedTimes: 2,
+		RewatchValue:   3,
+		Tags:           []string{"tag1", "tag2"},
+		Comment:        "comments",
+		StartDate: nagato.Date{
+			Year:  2022,
+			Month: 10,
+			Day:   31,
+		},
+		FinishDate: nagato.Date{
+			Year:  2021,
+			Month: 10,
+			Day:   1,
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("update-anime-status", d)
+}
+
+func exampleDeleteMyAnimeListStatus() {
+	_, err := nagatoClient.DeleteMyAnimeListStatus(1)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func exampleGetUserMangaList() {
 	d, _, err := nagatoClient.GetUserMangaList(nagato.GetUserMangaListParam{
 		Username: "rl404",
@@ -387,4 +429,42 @@ func exampleGetUserMangaList() {
 	}
 
 	toJson("user-manga", d)
+}
+
+func exampleUpdateMyMangaListStatus() {
+	d, _, err := nagatoClient.UpdateMyMangaListStatus(nagato.UpdateMyMangaListStatusParam{
+		ID:          1706,
+		Status:      nagato.UserMangaStatusPlanToRead,
+		IsRereading: true,
+		Volume:      1,
+		Chapter:     2,
+		Score:       8,
+		Priority:    1,
+		RereadTimes: 2,
+		RereadValue: 3,
+		Tags:        []string{"tag1", "tag2"},
+		Comment:     "comments",
+		StartDate: nagato.Date{
+			Year:  2022,
+			Month: 10,
+			Day:   31,
+		},
+		FinishDate: nagato.Date{
+			Year:  2021,
+			Month: 10,
+			Day:   1,
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("update-anime-status", d)
+}
+
+func exampleDeleteMyMangaListStatus() {
+	_, err := nagatoClient.DeleteMyMangaListStatus(1706)
+	if err != nil {
+		panic(err)
+	}
 }

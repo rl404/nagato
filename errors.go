@@ -1,8 +1,14 @@
 package nagato
 
 import (
+	"errors"
 	"fmt"
 	"strings"
+)
+
+// List of errors.
+var (
+	ErrInvalidDate = errors.New("invalid date")
 )
 
 func (c *Client) errRequiredField(str string) error {

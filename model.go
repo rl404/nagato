@@ -87,9 +87,9 @@ type AlternativeTitles struct {
 
 // Date is date model.
 type Date struct {
-	Year  int
-	Month int
-	Day   int
+	Year  int `validate:"gte=0"`
+	Month int `validate:"gte=0,lte=12"`
+	Day   int `validate:"gte=0,lte=31"`
 }
 
 // Genre is genre model.
