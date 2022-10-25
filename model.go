@@ -275,3 +275,67 @@ type UserAnimeStatistic struct {
 	RewatchedTimes   int
 	MeanScore        float64
 }
+
+// ForumBoardCategory is forum board category model.
+type ForumBoardCategory struct {
+	Title  string
+	Boards []ForumBoard
+}
+
+// ForumBoard is forum board model.
+type ForumBoard struct {
+	ID          int
+	Title       string
+	Description string
+	Subboards   []ForumSubboard
+}
+
+// ForumSubboard is forum subboard model.
+type ForumSubboard struct {
+	ID    int
+	Title string
+}
+
+// ForumTopic is forum topic model.
+type ForumTopic struct {
+	ID                int
+	Title             string
+	CreatedAt         time.Time
+	CreatedBy         string
+	PostCount         int
+	LastPostCreatedAt time.Time
+	LastPostCreatedBy string
+	IsLocked          bool
+}
+
+// ForumTopicDetail is forum topic detail model.
+type ForumTopicDetail struct {
+	Title string
+	Posts []ForumPost
+	Poll  ForumPoll
+}
+
+// ForumPost is forum post model.
+type ForumPost struct {
+	ID        int
+	Number    int
+	CreatedAt time.Time
+	CreatedBy string
+	Body      string
+	Signature string
+}
+
+// ForumPoll is forum poll model.
+type ForumPoll struct {
+	ID       int
+	Question string
+	IsClosed bool
+	Options  []ForumPollOption
+}
+
+// ForumPollOption is forum poll option.
+type ForumPollOption struct {
+	ID    int
+	Text  string
+	Votes int
+}

@@ -103,3 +103,10 @@ func (c *Client) valErrLTE(f string, param ...string) error {
 func (c *Client) valErrOneOf(f string, param ...string) error {
 	return c.errOneOfField(f, param[0])
 }
+
+func (p *GetForumTopicsParam) validate() error {
+	if p.BoardID == 0 && p.SubboardID == 0 && p.Query == "" {
+		return ErrForumTopicMissingQuery
+	}
+	return nil
+}

@@ -109,3 +109,22 @@ type UpdateMyMangaListStatusParam struct {
 	StartDate   Date                ``
 	FinishDate  Date                ``
 }
+
+// GetForumTopicsParam is get forum topics param.
+type GetForumTopicsParam struct {
+	BoardID       int                `validate:"gte=0"`
+	SubboardID    int                `validate:"gte=0"`
+	Query         string             `mod:"trim"`
+	TopicUsername string             `mod:"trim"`
+	Username      string             `mod:"trim"`
+	Sort          ForumTopicSortType `validate:"oneof=recent" mod:"trim,default=recent"`
+	Limit         int                `validate:"gt=0,lte=100" mod:"default=100"`
+	Offset        int                `validate:"gte=0"`
+}
+
+// GetForumTopicDetailsParam is get forum topic details param.
+type GetForumTopicDetailsParam struct {
+	ID     int `validate:"gt=0"`
+	Limit  int `validate:"gt=0,lte=100" mod:"default=100"`
+	Offset int `validate:"gte=0"`
+}

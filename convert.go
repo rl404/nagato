@@ -646,3 +646,95 @@ func (c *Client) userToUser(user *mal.User) *User {
 		IsSupporter: user.IsSupporter,
 	}
 }
+
+func (c *Client) forumCategoriesToForumCategories(data []mal.ForumBoardCategory) []ForumBoardCategory {
+	res := make([]ForumBoardCategory, len(data))
+	for i, cc := range data {
+		res[i] = ForumBoardCategory{
+			Title:  cc.Title,
+			Boards: c.forumBoardsToForumBoards(cc.Boards),
+		}
+	}
+	return res
+}
+
+func (c *Client) forumBoardsToForumBoards(data []mal.ForumBoard) []ForumBoard {
+	res := make([]ForumBoard, len(data))
+	for i, d := range data {
+		res[i] = ForumBoard{
+			ID:          d.ID,
+			Title:       d.Title,
+			Description: d.Description,
+			Subboards:   c.forumSubboardsToForumSubboards(d.Subboards),
+		}
+	}
+	return res
+}
+
+func (c *Client) forumSubboardsToForumSubboards(data []mal.ForumSubboard) []ForumSubboard {
+	res := make([]ForumSubboard, len(data))
+	for i, d := range data {
+		res[i] = ForumSubboard{
+			ID:    d.ID,
+			Title: d.Title,
+		}
+	}
+	return res
+}
+
+func (c *Client) forumTopicsToForumTopic(data []mal.ForumTopic) []ForumTopic {
+	res := make([]ForumTopic, len(data))
+	for i, d := range data {
+		res[i] = ForumTopic{
+			ID:                d.ID,
+			Title:             d.Title,
+			CreatedAt:         d.CreatedAt,
+			CreatedBy:         d.CreatedBy.Name,
+			PostCount:         d.NumberOfPosts,
+			LastPostCreatedAt: d.LastPostCreatedAt,
+			LastPostCreatedBy: d.LastPostCreatedBy.Name,
+			IsLocked:          d.IsLocked,
+		}
+	}
+	return res
+}
+
+func (c *Client) forumTopicDetailsToForumTopicDetails(d mal.ForumTopicData) *ForumTopicDetail {
+	return &ForumTopicDetail{
+		Title: d.Title,
+		Posts: c.forumPostsToForumPosts(d.Posts),
+		Poll: ForumPoll{
+			ID:       d.Poll.ID,
+			Question: d.Poll.Question,
+			IsClosed: d.Poll.Closed,
+			Options:  c.forumPollOptionsToForumPollOptions(d.Poll.Options),
+		},
+	}
+}
+
+func (c *Client) forumPostsToForumPosts(data []mal.ForumPost) []ForumPost {
+	res := make([]ForumPost, len(data))
+	for i, d := range data {
+		res[i] = ForumPost{
+			ID:        d.ID,
+			Number:    d.Number,
+			CreatedAt: d.CreatedAt,
+			CreatedBy: d.CreatedBy.Name,
+			Body:      d.Body,
+			Signature: d.Signature,
+		}
+	}
+	return res
+}
+
+func (c *Client) forumPollOptionsToForumPollOptions(data []mal.ForumPollOption) []ForumPollOption {
+	res := make([]ForumPollOption, len(data))
+	for i, d := range data {
+		res[i] = ForumPollOption{
+			ID:    d.ID,
+			Text:  d.Text,
+			Votes: d.Votes,
+		}
+	}
+	return res
+}

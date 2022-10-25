@@ -25,7 +25,11 @@ func example() {
 	// exampleUpdateMyMangaListStatus()
 	// exampleDeleteMyMangaListStatus()
 
-	exampleGetUserInfo()
+	// exampleGetUserInfo()
+
+	// exampleGetForumBoards()
+	// exampleGetForumTopics()
+	exampleGetForumTopicDetails()
 }
 
 func exampleGetAnimeDetails() {
@@ -481,4 +485,44 @@ func exampleGetUserInfo() {
 	}
 
 	toJson("user", d)
+}
+
+func exampleGetForumBoards() {
+	d, _, err := nagatoClient.GetForumBoards()
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("forum-boards", d)
+}
+
+func exampleGetForumTopics() {
+	d, _, err := nagatoClient.GetForumTopics(nagato.GetForumTopicsParam{
+		BoardID:       0,
+		SubboardID:    0,
+		Query:         "",
+		TopicUsername: "",
+		Username:      "",
+		Sort:          nagato.ForumTopicSortRecent,
+		Limit:         5,
+		Offset:        0,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("forum-topics", d)
+}
+
+func exampleGetForumTopicDetails() {
+	d, _, err := nagatoClient.GetForumTopicDetails(nagato.GetForumTopicDetailsParam{
+		ID:     2053204,
+		Limit:  5,
+		Offset: 6,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("forum-topic", d)
 }
