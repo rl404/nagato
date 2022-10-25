@@ -4,6 +4,10 @@ type idParam struct {
 	ID int `validate:"gt=0"`
 }
 
+type usernameParam struct {
+	Username string `validate:"required" mod:"trim,default=@me"`
+}
+
 // GetAnimeListParam is get anime list param model.
 type GetAnimeListParam struct {
 	Query  string `validate:"required,gte=3,lte=64" mod:"trim"`

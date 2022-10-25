@@ -23,7 +23,9 @@ func example() {
 
 	// exampleGetUserMangaList()
 	// exampleUpdateMyMangaListStatus()
-	exampleDeleteMyMangaListStatus()
+	// exampleDeleteMyMangaListStatus()
+
+	exampleGetUserInfo()
 }
 
 func exampleGetAnimeDetails() {
@@ -467,4 +469,16 @@ func exampleDeleteMyMangaListStatus() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func exampleGetUserInfo() {
+	d, _, err := nagatoClient.GetUserInfo("",
+		nagato.UserFieldAnimeStatistics,
+		nagato.UserFieldTimeZone,
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	toJson("user", d)
 }

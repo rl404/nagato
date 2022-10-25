@@ -23,6 +23,14 @@ func (c *Client) mangaFieldsToStrs(fields ...MangaField) []string {
 	return strs
 }
 
+func (c *Client) userFieldsToStrs(fields ...UserField) []string {
+	strs := make([]string, len(fields))
+	for i, f := range fields {
+		strs[i] = string(f)
+	}
+	return strs
+}
+
 func (c *Client) animeToAnime(anime *mal.Anime) *Anime {
 	if anime == nil {
 		return nil
@@ -606,4 +614,35 @@ func (c *Client) userMangaPagingToUserMangaList(manga *mal.UserMangaPaging) []Us
 	}
 
 	return res
+}
+
+func (c *Client) userToUser(user *mal.User) *User {
+	return &User{
+		ID:       user.ID,
+		Name:     user.Name,
+		Picture:  user.Picture,
+		Gender:   user.Gender,
+		Birthday: user.Birthday,
+		Location: user.Location,
+		JoinedAt: user.JoinedAt,
+		AnimeStatistics: UserAnimeStatistic{
+			WatchingCount:    user.AnimeStatistics.NumItemsWatching,
+			CompletedCount:   user.AnimeStatistics.NumItemsCompleted,
+			OnHoldCount:      user.AnimeStatistics.NumItemsOnHold,
+			DroppedCount:     user.AnimeStatistics.NumItemsDropped,
+			PlanToWatchCount: user.AnimeStatistics.NumItemsPlanToWatch,
+			TotalCount:       user.AnimeStatistics.NumItems,
+			WatchedDays:      user.AnimeStatistics.NumdaysWatched,
+			WatchingDays:     user.AnimeStatistics.NumdaysWatching,
+			CompletedDays:    user.AnimeStatistics.NumdaysCompleted,
+			OnHoldDays:       user.AnimeStatistics.NumdaysOnHold,
+			DroppedDays:      user.AnimeStatistics.NumdaysDropped,
+			TotalDays:        user.AnimeStatistics.NumDays,
+			Episode:          user.AnimeStatistics.NumEpisodes,
+			RewatchedTimes:   user.AnimeStatistics.NumTimesRewatched,
+			MeanScore:        user.AnimeStatistics.MeanScore,
+		},
+		TimeZone:    user.TimeZone,
+		IsSupporter: user.IsSupporter,
+	}
 }

@@ -242,3 +242,36 @@ type UserManga struct {
 	Manga  Manga
 	Status UserMangaListStatus
 }
+
+// User is user model.
+type User struct {
+	ID              int
+	Name            string
+	Picture         string
+	Gender          string
+	Birthday        string
+	Location        string
+	JoinedAt        time.Time
+	AnimeStatistics UserAnimeStatistic
+	TimeZone        string
+	IsSupporter     bool
+}
+
+// UserAnimeStatistic is user anime statistic.
+type UserAnimeStatistic struct {
+	WatchingCount    int
+	CompletedCount   int
+	OnHoldCount      int
+	DroppedCount     int
+	PlanToWatchCount int
+	TotalCount       int
+	WatchedDays      float64
+	WatchingDays     float64
+	CompletedDays    float64
+	OnHoldDays       float64
+	DroppedDays      float64
+	TotalDays        float64
+	Episode          int
+	RewatchedTimes   int
+	MeanScore        float64
+}
