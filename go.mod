@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/go-playground/mold/v4 v4.3.0
 	github.com/go-playground/validator/v10 v10.13.0
-	golang.org/x/oauth2 v0.7.0
+	golang.org/x/oauth2 v0.8.0
 )
 
 require (
@@ -16,8 +16,8 @@ require (
 	github.com/segmentio/go-camelcase v0.0.0-20160726192923-7085f1e3c734 // indirect
 	github.com/segmentio/go-snakecase v1.2.0 // indirect
 	golang.org/x/crypto v0.7.0 // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
