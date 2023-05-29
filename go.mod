@@ -3,7 +3,7 @@ module github.com/rl404/nagato
 go 1.18
 
 require (
-	github.com/go-playground/mold/v4 v4.4.0
+	github.com/go-playground/mold/v4 v4.5.0
 	github.com/go-playground/validator/v10 v10.14.0
 	golang.org/x/oauth2 v0.8.0
 )
