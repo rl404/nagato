@@ -7,7 +7,7 @@ import (
 )
 
 func example() {
-	// exampleGetAnimeDetails()
+	exampleGetAnimeDetails()
 	// exampleGetAnimeList()
 	// exampleGetAnimeRanking()
 	// exampleGetSeasonalAnime()
@@ -29,7 +29,7 @@ func example() {
 
 	// exampleGetForumBoards()
 	// exampleGetForumTopics()
-	exampleGetForumTopicDetails()
+	// exampleGetForumTopicDetails()
 }
 
 func exampleGetAnimeDetails() {
