@@ -3,8 +3,8 @@ name: tag
 on: workflow_dispatch
 
 jobs:
-  tag:
-    name: Tag
+  replace-version:
+    name: Replace Version
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
@@ -26,6 +26,10 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+  tag:
+    name: Tag
+    runs-on: ubuntu-latest
+    steps:
     - name: Check out code
       uses: actions/checkout@v4
     - name: Create tag
