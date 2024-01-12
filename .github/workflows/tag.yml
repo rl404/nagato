@@ -25,7 +25,7 @@ jobs:
         include: "mal/mal.go"
         regex: false
     - name: Push changes
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create tag
