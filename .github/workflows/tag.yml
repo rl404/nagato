@@ -11,6 +11,23 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    - name: Check tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        dry_run: true
+    - name: Find and replace version
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: ${{ steps.tag_version.outputs.previous_version }}
+        replace: ${{ steps.tag_version.outputs.new_version }}
+        include: "mal/mal.go"
+        regex: false
+    - name: Push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create tag
       uses: mathieudutour/github-tag-action@v6.1
       with:
