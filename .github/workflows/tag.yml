@@ -9,8 +9,6 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - name: Check tag
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.1
@@ -28,6 +26,8 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Check out code
+      uses: actions/checkout@v4
     - name: Create tag
       uses: mathieudutour/github-tag-action@v6.1
       with:
