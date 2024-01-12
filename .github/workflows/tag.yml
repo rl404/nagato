@@ -23,7 +23,7 @@ jobs:
         include: "mal/mal.go"
         regex: false
     - name: Push changes
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
   tag:
     name: Tag
     runs-on: ubuntu-latest
