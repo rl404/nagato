@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/go-playground/mold/v4 v4.5.1
-	github.com/go-playground/validator/v10 v10.24.0
+	github.com/go-playground/validator/v10 v10.25.0
 	golang.org/x/oauth2 v0.26.0
 )
 
