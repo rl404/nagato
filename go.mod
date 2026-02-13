@@ -2,7 +2,7 @@ module github.com/rl404/nagato
 
 go 1.24.0
 
-toolchain go1.25.7
+toolchain go1.26.0
 
 require (
 	github.com/go-playground/mold/v4 v4.5.1
